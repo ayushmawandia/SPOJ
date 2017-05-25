@@ -1,0 +1,4 @@
+#include<iostream>
+#include<vector> 
+using namespace std;
+int main(){int t,i,j,n,x;cin>>t;while(t--){cin>>n;vector<int> a(n+1),b(n+1);for(i=1;i<=n;i++){for(j=1;j<=i;j++){cin>>x;b[j]=x+max(a[j],a[j-1]);}a=b;}while(n--)x=max(x,a[n+1]);cout<<x<<endl;}}
