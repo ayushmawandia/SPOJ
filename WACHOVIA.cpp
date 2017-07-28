@@ -2,7 +2,6 @@
 #include<cstring>
 using namespace std;
 
-
 int w[50],v[50];
 int dp[1001][50];
 int wt,n;
