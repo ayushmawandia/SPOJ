@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	cin.ignore();
+	while(t--)
+	{
+		string s;
+		getline(cin,s);
+		int len=s.length();
+		if(len==0)
+		{
+			t++;
+			continue;
+		}
+		int c=0,m=0,l=0,t=0;
+		for(int i=0;i<len;i++)
+		{
+			t=0;
+			while(s[i]>='a'&&s[i]<='z' && i<len)
+			{
+				t++;
+				i++;
+			}
+			if(t==l && t!=0)
+			{
+				c++;
+				if(c>m)
+					m=c;
+			}
+			else if(t!=0)
+			{
+				l=t;
+				c=1;
+				if(c>m)
+					m=c;
+			}
+		}
+		cout<<m<<endl;
+	}
+}

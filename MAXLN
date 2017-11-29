@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	for(int i=1;i<=t;i++)
+	{
+		double r;
+		cin>>r;
+		double s=4*r*r+0.25;
+		cout<<"Case "<<i<<": ";
+		printf("%.2f\n",s);
+	}
+}

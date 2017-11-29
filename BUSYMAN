@@ -1,0 +1,48 @@
+#include <iostream>
+#include<algorithm>
+#include<cstring>
+using namespace std;
+
+bool algo(pair<int,int> a,pair<int,int> b)
+{
+	if( a.first<b.first)
+	return  a.first<b.first;
+	else if(a.first==b.first)
+		return a.second<b.second;
+	return false;
+}
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		pair<int,int> a[n];
+		int m=0;
+		for(int i=0;i<n;i++)
+		{
+			cin>>a[i].first>>a[i].second;
+			if(a[i].second>m)
+				m=a[i].second;
+		}
+		sort(a,a+n,algo);
+		int x[1000001];
+		memset(x,0,sizeof(x));
+		int it=n-1;
+		int ma=0;
+		for(int i=m;i>=0;i--)
+		{
+			x[i]=x[i+1];
+			while(i==a[it].first)
+			{
+				x[i]=max(x[i],1+x[a[it].second]);
+				it--;
+			}
+			if(x[i]>ma)
+				ma=x[i];
+		
+		}
+		cout<<ma<<endl;
+	}
+}

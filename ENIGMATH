@@ -1,0 +1,27 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+long long int gcd(long long int m,long long n)
+{
+	if(m%n==0)
+	{
+		return n;
+	}
+	else return gcd(n,m%n);
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		long long int n,m;
+		long long int i=2;
+		cin>>n>>m;
+		i=min(m,n);
+		long long int j=m+n-i;
+		i=gcd(j,i);
+		
+		cout<<m/i<<" "<<n/i<<endl;
+	}
+}

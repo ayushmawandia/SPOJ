@@ -1,0 +1,33 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int i;
+long long int dp[100000000];
+long long int count(long long int x)
+{
+	if(x>100000000-1)
+	{
+		return max(x,count(x/2)+count(x/3)+count(x/4));
+		
+	}
+	if(dp[x]>=0)
+		return dp[x];
+	else
+		{
+			dp[x]=max(x,count(x/2)+count(x/3)+count(x/4));
+			return dp[x];
+		}
+}
+int main()
+{
+	long long int n;
+	memset(dp,-1,sizeof(dp));
+	dp[0]=0;
+	dp[1]=1;
+	while(cin>>n)
+	{
+		cout<<count(n)<<endl;
+		
+	}
+}
+

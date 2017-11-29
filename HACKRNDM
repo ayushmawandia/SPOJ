@@ -1,0 +1,43 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+bool binary(int ar[],int n,int i,int x)
+{
+	int begin=i,end=n-1,key=x;
+	while(begin<=end)
+	{
+		int mid=(begin+end)/2;
+		if(ar[mid]==key)
+			return true;
+		if(ar[mid]>key)
+		{
+			end=mid-1;
+		}
+		else
+		begin=mid+1;
+	}
+	return ar[begin]==key;
+}
+
+int main()
+{
+	int n,k;
+	cin>>n>>k;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	sort(a+0,a+n);
+	int ans=0;
+//	cout<<"ok"<<endl;
+	for(int i=0;i<n-1;i++)
+	{
+		if(binary(a,n,i+1,a[i]+k))
+		{
+			ans++;
+		}
+	}
+	cout<<ans<<endl;
+}

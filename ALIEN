@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,m;
+		scanf("%d%d",&n,&m);
+		int a[n];
+		for(int i=0;i<n;i++)
+		{
+				scanf("%d",&a[i]);
+		}
+		int max=0,tm=m;
+		int num=0,tn=0;
+		
+		for(int i=0;i<n;i++)
+		{
+				max+=a[i];
+				num++;
+			
+				while(max>m)
+				{
+					max-=a[i-num+1];
+					num--;
+				}
+				if(num>tn && max<=m)
+				{
+					tm=max;
+					tn=num;
+				}
+			if(num==tn && max<=m && max<tm)
+			{
+				tm=max;
+			}
+		//	cout<<tm<<" "<<tn<<" "<<max<<" "<<num<<endl;
+		}
+		printf("%d %d\n",tm,tn);
+	}
+	
+}

@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int m,n;
+		cin>>m>>n;
+		int a[m+1][n+1];
+		int ma=0;
+		for(int i=0;i<=m;i++)
+		{
+			for(int j=0;j<=n;j++)
+			{
+				if(i==0||j==0)
+				{
+					a[i][j]=0;
+					continue;
+				}
+				cin>>a[i][j];
+				a[i][j]+=max(a[i-1][j],max(a[i-1][j+1],a[i-1][j-1]));
+				if(a[i][j]>ma)
+				ma=a[i][j];
+			}
+			
+		}
+	cout<<ma<<endl;
+		
+	}
+}

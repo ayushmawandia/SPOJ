@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	string a[]={"u","m","a","n","k"};
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		long long int n;
+		cin>>n;
+		long long int d;
+		string s="";
+		while(n>0)
+		{
+			d=n%5;
+			n=n/5;
+			if(d==0)
+				{
+					n--;
+				}
+				s=a[d]+s;
+		}
+		cout<<s<<endl;
+	}
+}

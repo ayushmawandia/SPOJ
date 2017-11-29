@@ -1,0 +1,41 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	for(int k=1;k<=t;k++)
+	{
+		long long n;
+		cin>>n;
+		char c;
+		cin>>c;
+		while(c!='=')
+		{
+			long long int m;
+			cin>>m;
+			if(c=='+')
+			{
+				n=n+m;
+			}
+			else if(c=='-')
+			{
+				n=n-m;
+			}
+			else if(c=='*')
+			{
+				n=n*m;
+			}
+			else if(c=='/')
+			{
+				n=n/m;
+			}
+			cin>>c;
+		
+		}
+		cout<<n<<endl;
+		
+	}
+}

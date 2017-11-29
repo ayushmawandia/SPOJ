@@ -1,0 +1,49 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t)
+	{
+			vector<pair<int,pair<int,int>>> ar;
+			for(int i=0;i<t;i++)
+			{
+				int a,b,c;
+				cin>>a>>b>>c;
+				ar.push_back(make_pair(a,make_pair(c,b)));
+				ar.push_back(make_pair(a,make_pair(b,c)));
+				ar.push_back(make_pair(b,make_pair(c,a)));
+				ar.push_back(make_pair(b,make_pair(a,c)));
+				ar.push_back(make_pair(c,make_pair(a,b)));
+				ar.push_back(make_pair(c,make_pair(b,a)));
+				
+			}
+			sort(ar.begin(),ar.end());
+			int height[ar.size()];
+			int m=0;
+			for(int i=0;i<ar.size();i++)
+			{
+				
+				int j=i-1;
+				height[i]=ar[i].second.second;
+				int max=0;
+				while(j>=0)
+				{
+					if(height[j]>max &&ar[i].first>ar[j].first && ar[i].second.first>ar[j].second.first)
+						max=height[j];
+					j--;
+				}
+				height[i]+=max;
+				if(m<height[i])
+					m=height[i];
+			//	cout<<ar[i].first<<" "<<ar[i].second.first<<" "<<ar[i].second.second<<" "<<height[i]<<endl;
+			}
+			
+			cout<<m<<endl;
+			cin>>t;
+	}
+}

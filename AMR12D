@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		cin>>s;
+		int l=s.length();
+		int flag=0;
+		for(int i=1;i<=l;i++)
+		{
+			for(int j=0;j<=l-i;j++)	
+			{
+			
+			string k=s.substr(j,i);
+			string q="";
+			for(int w=k.length()-1;w>=0;w--)
+				q=q+k[w];
+			bool f=false;
+			for(int p=0;p<=l-i;p++)	
+			{
+				k=s.substr(p,i);
+				if(k==q)
+					f=true;
+			}
+			if(f==false)
+				{
+					flag=1;
+					break;
+				}	
+			}
+		}
+		if(flag==0)
+			cout<<"YES"<<endl;
+		else
+		cout<<"NO"<<endl;
+	
+	}
+}

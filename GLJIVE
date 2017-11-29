@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	int s=0,ans=0;
+	for(int i=1;i<=10;i++)
+	{
+		int t;
+		cin>>t;
+		s=s+t;
+		ans=s;
+		if(s>=100)
+		{
+			if(s-100<=100-(s-t))
+				{
+					ans=s;
+					break;	
+				}
+				else
+				{
+					ans=s-t;
+					break;
+				}
+		}
+	}
+	cout<<ans;
+}

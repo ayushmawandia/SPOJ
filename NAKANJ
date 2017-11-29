@@ -1,0 +1,61 @@
+#include<iostream>
+#include<queue>
+#include<cstring>
+using namespace std;
+
+void bfs(int x,int y,int c[9][9],bool v[9][9])
+{
+//	cout<<x<<" "<<y<<" "<<c[x][y];
+	v[x][y]=true;
+	queue<pair<int,int>> q;
+	q.push(make_pair(x,y));
+	while(!q.empty())
+	{
+		pair<int,int> a=q.front();
+		q.pop();
+		x=a.first;
+		y=a.second;
+		for(int i=-2;i<=2;i++)
+		{
+			for(int j=-2;j<=2;j++)
+			{
+				int x1=x-i;
+				int y1=y-j;
+				if(i==j || i==0 || j==0 || i==-1*j || x-i>8 || x-i<1 || y-j>8 || y-j<1 ||v[x1][y1]==true)
+					continue;
+				c[x1][y1]=c[x][y]+1;
+				v[x1][y1]=true;
+				q.push(make_pair(x1,y1));
+			}
+		}
+	}
+	
+	return;
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int c[9][9];
+		char a,b;
+		int c1,d;
+		cin>>a>>c1>>b>>d;
+		int a1=a-96;
+		int b1=b-96;
+		bool v[9][9];
+		for(int i=0;i<=8;i++)
+		{
+			for(int j=0;j<=8;j++)
+			{
+				c[i][j]=999;
+				v[i][j]=false;
+			}
+		}
+		c[a1][c1]=0;
+		bfs(a1,c1,c,v);
+		
+		cout<<c[b1][d]<<endl;
+	}
+}

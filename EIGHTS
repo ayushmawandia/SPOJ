@@ -1,0 +1,29 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	int a[]={0,192,442,692,942};
+	for(int i=1;i<=t;i++)
+	{
+		long long int n;
+		cin>>n;
+		long long int x=n/4;
+		x--;
+		int c=n%4;
+		if(c!=0)
+			x++;
+		else
+			c=4;
+			if(x==0)
+			{
+			
+			cout<<a[c]<<endl;
+			continue;
+		}
+		cout<<x<<a[c]<<endl;
+	}
+} 

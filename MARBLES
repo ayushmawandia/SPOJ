@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		long long int n,k;
+		cin>>n>>k;
+		unsigned long long int ans=1;
+		double x=1;
+		n--;
+		k--;
+		
+		k=n-k;
+		long long int i=1;
+		for(i=1;i<=k;i++)
+		{
+			
+			ans=ans*(n-k+i)/i;
+			x=x*(n-k+i)/i;
+			
+			
+		}
+	
+		cout<<ans<<endl;
+	}
+}

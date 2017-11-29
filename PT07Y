@@ -1,0 +1,53 @@
+#include <iostream>
+#include<vector>
+#include<cstring>
+using namespace std;
+int v[10001];
+int n;
+bool dfs(int k,vector<int> a[])
+{
+		if(v[k]==1)
+		{
+		
+			return false;
+		}
+	v[k]=1;
+	for(int i=0;i<a[k].size();i++)
+	{
+	
+		dfs(a[k][i],a);
+	}
+	return true;
+	
+}
+
+int main()
+{
+	int m;
+	cin>>n>>m;
+	vector<int> a[n+1];
+	memset(v,0,sizeof(v));
+	for(int i=1;i<=m;i++)
+	{
+		int x,y;
+		cin>>x>>y;
+		a[x].push_back(y);
+		a[y].push_back(x);
+	}
+	bool b=dfs(1,a);
+	for(int i=1;i<=n;i++)
+	{
+		if(v[i]==0)
+		{
+			b=false;
+			break;
+		}
+	}
+	if(b==true && n==m+1)
+		cout<<"YES"<<endl;
+	else
+		cout<<"NO"<<endl;
+	
+	
+	
+} 

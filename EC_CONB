@@ -1,0 +1,32 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+int main() {
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+	int	ans=n;
+		if(n%2==0)
+		{
+			int x=log(n)/log(2);
+			
+			//	cout<<x<<endl;
+			 ans=0;
+			while(n!=1)
+			{
+				int c=n%2;
+				ans+=c*pow(2,x);
+			//	cout<<ans<<endl;
+				x--;
+				n=n/2;
+			}
+			ans+=1;
+		}
+		cout<<ans<<endl;
+	}
+}

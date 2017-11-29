@@ -1,0 +1,39 @@
+#include<iostream>
+#include<queue>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+       int f,s,g,u,d;
+       cin>>f>>s>>g>>u>>d;
+
+       queue<pair<int,int>> q;
+       q.push(make_pair(s,0));
+       bool vis[f+1];
+       vis[s]=true;
+       memset(vis,false,sizeof(vis));
+       while(!q.empty())
+       {
+           pair<int,int> x=q.front();
+           q.pop();
+           int a=x.first;           
+           int b=x.second;
+           if(a==g)
+           {
+               cout<<b<<endl;
+               return 0;
+           }
+           if(a+u<=f && vis[a+u]==false)
+           {
+            q.push(make_pair(a+u,b+1));
+            vis[a+u]=true;
+           }
+           if(a-d>=0 && vis[a-d]==false)
+           {
+               vis[a-d]=true;
+            q.push(make_pair(a-d,b+1));
+           }
+       }
+       cout<<"use the stairs"<<endl;
+}

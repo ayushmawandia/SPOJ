@@ -1,0 +1,16 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	long long int a,b;
+	cin>>a>>b;
+	while(a)
+	{
+		 long long int g=__gcd(a,b);
+	
+		cout<<a*b/(g*g)<<endl;
+		cin>>a>>b;
+	}
+}

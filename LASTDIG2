@@ -1,0 +1,29 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	for(int k=1;k<=t;k++)
+	{
+		string x;
+		cin>>x;
+		int a=x[x.length()-1]-'0';
+		long long int b;
+		cin>>b;
+		if(b==0)
+		{
+			cout<<"1"<<endl;
+			continue;
+		}
+		b=b%4;
+		if(b==0)
+			b=4;		
+		a=pow(a,b);
+		a=a%10;
+		cout<<a<<endl;
+		
+	}
+}

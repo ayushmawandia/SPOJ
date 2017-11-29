@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+int gcd(int a,int b)
+{
+	if(a%b==0)
+		return b;
+	return gcd(b,a%b);
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		cin>>s;
+		int n=0;
+		for(int i=0;i<s.length();i++)
+		{
+			if(s[i]=='.')
+			{
+				i++;
+				for(;i<s.length();i++)
+				{
+					n=n*10+(s[i]-48);
+				}
+			}
+		}
+		if(n<10)
+			n=n*1000;
+		else if(n<100)
+			n=n*100;
+			else if(n<1000)
+				n=n*10;
+		if(n==0)
+		{
+			cout<<"1"<<endl;
+			continue;
+		}
+		
+	//	cout<<n<<endl;
+		int y=gcd(10000,n);
+	//	cout<<y<<endl;
+		cout<<10000/y<<endl;
+	}
+}

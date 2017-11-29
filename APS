@@ -1,0 +1,43 @@
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+int p[10000000];
+long long int a[10000000];
+
+int main()
+{
+	memset(p,0,sizeof(p));
+	for(int i=2;i<10000000;i++)
+	{
+		p[i]=i;
+	}
+	for(int i=2;i<=3163;i++)
+	{
+		if(p[i]==i)
+		{
+			for(int j=2*i;j<10000000;j+=i)
+			{
+				if(p[j]==j)
+				{
+					p[j]=i;
+				}
+			}
+		}
+	}
+
+	a[0]=0;
+	a[1]=0;
+	for(int i=2;i<10000000;i++)
+	{
+		a[i]=a[i-1]+p[i];
+	}
+	int t;
+	cin>>t;
+	for(int j=1;j<=t;j++)
+	{
+		int n;
+		cin>>n;
+		cout<<a[n]<<endl;
+	}
+}

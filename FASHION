@@ -1,0 +1,36 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int a;
+	cin>>a;
+	while(a--)
+	{
+		int n;
+		cin>>n;
+		int m[n],f[n];
+		for(int i=0;i<n;i++)
+		{
+			cin>>m[i];
+		}
+		for(int i=0;i<n;i++)
+		{
+			cin>>f[i];
+		}
+		sort(m,m+n);
+		sort(f,f+n);
+		int s=0;
+		for(int i=0;i<n;i++)
+		{
+		//	cout<<m[i]<<" "<<f[i]<<endl;
+			s+=m[i]*f[i];
+		}
+		
+		cout<<s<<endl;
+		
+		}
+	
+	return 0;
+}

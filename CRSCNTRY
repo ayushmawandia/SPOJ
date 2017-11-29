@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cstring>
+#include <vector>
+using namespace std;
+
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int max1=0;
+		vector<int> a;
+		int x;
+		cin>>x;
+		while(x!=0)
+		{
+			a.push_back(x);
+			cin>>x;
+		}
+		cin>>x;
+		while(x!=0)
+		{
+			vector<int> b;
+			b.push_back(x);
+			while(x!=0)
+			{
+				b.push_back(x);
+				cin>>x;
+			}
+			int s1=a.size();
+			int s2=b.size();
+			int ar[s1+1][s2+1];
+			memset(ar,0,sizeof(ar));
+			for(int i=1;i<=s1;i++)
+			{
+				for(int j=1;j<=s2;j++)
+				{
+					ar[i][j]=max(ar[i][j-1],ar[i-1][j]);
+					if(a[i-1]==b[j-1])
+						ar[i][j]=ar[i-1][j-1]+1;
+				}
+			}
+			if(ar[s1][s2]>max1)
+				max1=ar[s1][s2];
+			cin>>x;
+			
+		}
+		cout<<max1<<endl;
+	}
+}

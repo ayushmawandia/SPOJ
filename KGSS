@@ -1,0 +1,110 @@
+#include<iostream>
+using namespace std;
+
+struct Node
+{
+	int max1,max2;
+	Node* right;
+	Node *left;
+};
+
+void add(Node* head,int begin,int end,int a[])
+{
+	if(begin==end)
+	{
+		head->max1=a[begin];
+		head->max2=0;
+		head->left=0;
+		head->right=0;
+		return;
+	}
+	int mid=(begin+end)/2;
+	Node *b=new Node;
+	Node *c=new Node;
+	head->right=b;
+	head->left=c;
+	add(c,begin,mid,a);
+	add(b,mid+1,end,a);
+	head->max1=max(b->max1,c->max1);
+	int m=b->max1+c->max1-head->max1;
+	head->max2=max(m,max(b->max2,c->max2));
+}
+void update(Node* head,int begin,int end,int pos,int key)
+{
+	if(begin==end)
+	{
+		head->max1=key;
+	//	cout<<"ok";
+		return;
+	}
+	int mid=(begin+end)/2;
+	if(pos<=mid)
+	update(head->left,begin,mid,pos,key);
+	else
+	update(head->right,mid+1,end,pos,key);
+	Node *b=head->right;
+	Node *c=head->left;
+//	cout<<"ok1";
+	head->max1=max(b->max1,c->max1);
+	int m=b->max1+c->max1-head->max1;
+	head->max2=max(m,max(b->max2,c->max2));
+}
+Node* query(Node* head,int begin,int end,int i,int j)
+{
+	if(end<i || begin>j)
+		return 0;
+	
+	if(i<=begin&&j>=end)
+	{
+		return head;
+	}
+	int mid=(begin+end)/2;
+		Node *b=new Node;
+	Node *c=new Node;
+	b=query(head->left,begin,mid,i,j);
+	c=query(head->right,mid+1,end,i,j);
+	Node *a=new Node;
+
+	if(b==0)
+	{
+		return c;
+	}
+	if(c==0)
+		return b;
+	a->max1=max(b->max1,c->max1);
+	int m=b->max1+c->max1-a->max1;
+	a->max2=max(m,max(b->max2,c->max2));
+	return a;
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	Node *head=new Node;
+	add(head,0,n-1,a);
+
+	int x;
+	cin>>x;
+	for(int i=1;i<=x;i++)
+	{
+		char c;
+		int k,j;
+		cin>>c>>j>>k;
+		if(c=='Q')
+		{
+			Node* a=new Node;
+			a=query(head,0,n-1,j-1,k-1);
+			cout<<a->max1+a->max2<<endl;
+		}
+		else
+		{
+			update(head,0,n-1,j-1,k);
+		}
+		
+	}
+}

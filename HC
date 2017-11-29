@@ -1,0 +1,30 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+
+    int main() {
+
+     int t;
+     cin>>t;
+     while(t--)
+     {
+        int n;
+        cin>>n;
+        int o=0;
+        for(int i=1;i<=n;i++)
+        {
+           string x;
+           cin>>x;
+           if(x=="lxh")
+            o++;
+
+        }
+        if(o%2==0)
+         cout<<"hhb"<<endl;
+        else
+         cout<<"lxh"<<endl;
+
+     }
+
+    }

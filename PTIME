@@ -1,0 +1,44 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+   int n;
+   cin>>n;
+    int a[10001];
+    memset(a,0,sizeof(a));
+    for(int i=2;i<=100;i++)
+        if(a[i]==0)
+        for(int j=i+i;j<=10000;j+=i)
+            a[j]=1;
+    bool f=true;
+   for(int i=2;i<=n;i++)
+   {
+      int p=i;
+      int c=0;
+
+      if(a[p]==0)
+      {
+
+          while(p<=n)
+          {
+              c+=n/p;
+              p=p*i;
+          }
+
+      if(f)
+      {
+          cout<<i<<"^"<<c;
+          f=false;
+      }
+      else
+      {
+          cout<<" * "<<i<<"^"<<c;
+      }
+      }
+   }
+}
+
+
+

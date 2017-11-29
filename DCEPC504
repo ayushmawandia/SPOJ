@@ -1,0 +1,38 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int revert(int n)
+{
+	n=n%2;
+	if(n==0)
+		return 1;
+	else
+		return 2;
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		long long int n;
+		long long int k;
+		cin>>n>>k;
+		long long int prev=0;
+		long long int y=1;
+		long long int x=0,c=n-1;
+		
+		while(c--)
+		{
+			prev=(k+1)/2;
+			if(prev*2==k)
+				x++;
+			k=prev;
+		}
+		y=revert(x);
+		if(y==1)
+			cout<<"Male"<<endl;
+		else
+			cout<<"Female"<<endl;	
+	}
+}

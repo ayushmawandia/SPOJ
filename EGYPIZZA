@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	long long int n;
+	cin>>n;
+	long long int a=0,b=0,c=0,t=1;
+	for(long long int i=1;i<=n;i++)
+	{
+		int x,y;
+		scanf("%d/%d",&x,&y);
+	//	cout<<a<<" "<<b<<endl;
+		if(x==3 && y==4)
+			c++;
+		if(x==1 && y==4)
+			a++;
+		if(x==1 && y==2)
+			b++;
+	}
+//	cout<<a<<" "<<b<<" "<<c<<endl;
+//	cout<<t<<" ";
+	a=a-c;
+	t+=c;
+//	cout<<t<<" ";
+	t+=b/2;
+	b=b%2;
+	a=a-2*b;
+	t+=b;
+//	cout<<t<<" ";
+	if(a<0)
+		a=0;
+	int d=a/4;
+	
+	if(a%4!=0)
+		d++;
+	a=d;	
+	t+=a;
+	cout<<t<<endl;	
+}

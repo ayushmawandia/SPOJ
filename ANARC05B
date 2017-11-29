@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+int binary(int b[],int n,int x)
+{
+	int low=1,high=n;
+	while(low<=high)
+	{
+		int mid=low+high;
+		mid=mid/2;
+		if(b[mid]==x)
+			return mid;
+		else if(b[mid]>x)
+			high=mid-1;
+		else
+			low=mid+1;			
+	}
+	return -1;
+}
+
+
+
+int main()
+{
+	int n;
+	cin>>n;
+	while(n!=0)
+	{
+		int a[n+2];
+		long long int a1[n+2];
+		a[0]=0;
+		
+		a1[0]=a[0];
+		for(int i=1;i<=n;i++)
+		{
+			cin>>a[i];
+			a1[i]=a1[i-1]+a[i];
+		}
+		a1[n+1]=a1[n]+10001;
+		a[n+1]=10001;
+		int n1;
+		cin>>n1;
+		int b[n1+2];
+		long long int b1[n1+2];
+		b[0]=0;
+		b1[0]=b[0];
+		for(int i=1;i<=n1;i++)
+		{
+			cin>>b[i];
+			b1[i]=b1[i-1]+b[i];
+		}
+		b1[n1+1]=b1[n1]+10001;
+		b[n1+1]=10001;
+		int i1=0,i2=0,j1=0,j2=0;
+		long long int max1=0;
+		for(int i=1;i<=n+1;i++)
+		{
+			int x=binary(b,n1+1,a[i]);
+			
+			if(x!=-1)
+			{
+				
+				i1=j1;
+				i2=j2;
+				j1=i;
+				j2=x;
+		//		cout<<i1<<" "<<j1<<" "<<i2<<" "<<j2<<endl;
+				max1+=max(a1[j1]-a1[i1],b1[j2]-b1[i2]);
+		//		cout<<max1<<endl;
+			}
+		}
+		cout<<max1-10001<<endl;
+		cin>>n;
+	}
+}

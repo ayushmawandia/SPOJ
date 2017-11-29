@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    string s;
+    int ca=1;
+    while(cin>>s)
+    {
+            int l=s.length();
+            bool c=true;
+            int ans=0;
+            for(int i=0;i<l;i++)
+            {
+                if(c)
+                {
+                    if(s[i]=='1')
+                    {
+                        ans++;
+                        c=false;
+                    }
+                }
+                else
+                {
+                    if(s[i]=='0')
+                    {
+                        ans++;
+                        c=true;
+                    }
+                }
+            }
+            cout<<"Game #"<<ca<<": "<<ans<<endl;
+            ca++;
+    }
+}

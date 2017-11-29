@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+int l;
+int find(string s,int i,int x)
+{
+//	cout<<i<<" "<<x<<endl;
+	if(i>=l)
+		return 1;
+	int k=0;
+	int sum=0;
+	int temp=0;
+	for(int j=i;j<l;j++)
+	{
+		temp=0;
+		sum+=s[j]-'0';
+		if(sum>=x)
+			k+=find(s,j+1,sum);
+	}
+	
+	return k;
+}
+
+
+int main()
+{
+	string s;
+	cin>>s;
+	int t=1;
+	while(s!="bye")
+	{
+		l=s.length();
+		cout<<t<<". "<<find(s,0,0)<<endl;
+		cin>>s;
+		t++;
+	}
+}

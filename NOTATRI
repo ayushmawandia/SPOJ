@@ -1,0 +1,31 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	int n;
+	cin>>n;
+	while(n)
+	{
+		int a[n];
+		for(int i=0;i<n;i++)
+			cin>>a[i];
+		sort(a,a+n);
+		int ans=0;
+		for(int i=0;i<n;i++)
+		{
+			for(int j=i+1;j<n;j++)
+			{
+				
+				int c=a[i]+a[j];
+				ans+=upper_bound(a,a+n,a[n-1])-lower_bound(a+j+1,a+n,c+1);
+			//	ans++;
+			//	cout<<a[i]<<" "<<a[j]<<endl;
+			}
+		}
+		
+		cout<<ans<<endl;
+		cin>>n;
+	}
+}

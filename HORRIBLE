@@ -1,0 +1,108 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+long long int seg[1000001];
+long long int lazy[1000001];
+long long int max(long long int seg[],long long int s,long long int e,long long int lazy[],long long int low,long long int high,long long int pos)
+{
+	if(low>high)
+		return 0;
+		
+	if(lazy[pos] !=0)
+	{
+		seg[pos]+=(high-low+1)*lazy[pos];
+		if(low!=high)
+		{
+			lazy[2*pos+1] +=lazy[pos];
+			lazy[2*pos+2] +=lazy[pos];
+		}
+		lazy[pos]=0;
+	}
+	if(s>high || e<low)
+		return 0;
+	
+	if(s<=low && e>=high)
+	{
+		return seg[pos];	
+	}
+	long long int mid=(low+high)/2;
+	
+	
+	return max(seg,s,e,lazy,low,mid,2*pos+1)+max(seg,s,e,lazy,mid+1,high,2*pos+2);
+	
+}
+
+
+void add(long long int seg[],long long int s,long long int e,long long int x,long long int lazy[],long long int low,long long int high,long long int pos)
+{
+	
+	if(low>high)
+		return;
+		
+	if(lazy[pos] !=0)
+	{
+		seg[pos]+=(high-low+1)*lazy[pos];
+		if(low!=high)
+		{
+			lazy[2*pos+1] +=lazy[pos];
+			lazy[2*pos+2] +=lazy[pos];
+		}
+		lazy[pos]=0;
+	}
+	if(s>high || e<low)
+		return;
+	if(s<=low && e>=high)
+	{
+			seg[pos]+=(high-low+1)*x;
+		if(low!=high)
+		{
+			lazy[2*pos+1] +=x;
+			lazy[2*pos+2] +=x;
+		}
+		return;
+	}
+	
+	int mid=(low+high)/2;
+	add(seg,s,e,x,lazy,low,mid,2*pos+1);
+	add(seg,s,e,x,lazy,mid+1,high,2*pos+2);
+	seg[pos]=seg[2*pos+1]+seg[2*pos+2];
+//	cout<<pos<<" "<<seg[pos]<<endl;
+}
+
+int main()
+{
+	long long int t;
+	cin>>t;
+
+	while(t--)
+	{
+	
+	long long int n,c;
+	cin>>n>>c;
+	
+	
+	memset(seg,0,sizeof(seg));
+	memset(lazy,0,sizeof(lazy));
+	for(int i=1;i<=c;i++)
+	{
+		long long int a,b,d,e;
+		cin>>a;
+		if(a==0)
+		{
+			cin>>b>>d>>e;
+			add(seg,b-1,d-1,e,lazy,0,n-1,0);
+		}
+		if(a==1)
+		{
+			cin>>b>>d;
+			cout<<max(seg,b-1,d-1,lazy,0,n-1,0)<<endl;
+		}
+	
+		
+	}
+	
+	
+	}
+	
+	
+}

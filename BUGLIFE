@@ -1,0 +1,73 @@
+#include<iostream>
+#include<vector>
+#include<cstring>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	for(int k=1;k<=t;k++)
+	{
+		int n,m;
+		cin>>n>>m;
+		vector<int> x[n+1];
+		for(int i=1;i<=m;i++)
+		{
+			int a,b;
+			cin>>a>>b;
+			x[a].push_back(b);
+			x[b].push_back(a);
+		}
+		int male[n+1],female[n+1];
+		memset(male,-1,sizeof(male));
+		memset(female,-1,sizeof(female));
+		int flag=1;
+		for(int i=1;i<=n;i++)
+		{
+			if(male[i]==-1 && female[i]==-1)
+			{
+				male[i]=1;
+			}
+			if(male[i]==1)
+			{
+				for(int j=0;j<x[i].size();j++)
+				{
+					if(male[x[i][j]]==1)
+					{
+						flag=0;
+						break;
+					}
+					else
+						female[x[i][j]]=1;
+					
+				}
+				if(flag==0)
+					break;
+			}
+			if(female[i]==1)
+			{
+				for(int j=0;j<x[i].size();j++)
+				{
+					if(female[x[i][j]]==1)
+					{
+						flag=0;
+						break;
+					}
+					else
+						male[x[i][j]]=1;
+					
+				}
+				if(flag==0)
+					break;
+			}
+		}
+		if(flag==1)
+		{
+			cout<<"Scenario #"<<k<<":"<<endl<<"No suspicious bugs found!"<<endl;
+		}
+		else
+		{
+			cout<<"Scenario #"<<k<<":"<<endl<<"Suspicious bugs found!"<<endl;
+		}
+	}
+}

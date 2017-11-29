@@ -1,0 +1,70 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int id[10001];
+
+int root(int x)
+{
+    while(id[x] != x)
+    {
+        id[x] = id[id[x]];
+        x = id[x];
+    }
+    return x;
+}
+void uni(int x,int y)
+{
+	int r1=root(x);
+	int r2=root(y);
+	id[r1]=id[r2];
+}
+int krus(vector<pair<int,pair<int,int>>> g)
+{
+	int ans=0;
+	for(int i=0;i<g.size();i++)
+	{
+		int x=g[i].second.first;
+		int y=g[i].second.second;
+		int cost=g[i].first;
+		if(root(x)!=root(y))
+		{
+			
+			ans+=cost;
+			uni(x,y);
+		}
+	}
+	return ans;
+}
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		vector<pair<int,pair<int,int>>> g;
+		for(int i=1;i<=n;i++)
+		{
+			string s;
+			cin>>s;
+			int k;
+			cin>>k;
+			while(k--)
+			{
+				int a,b;
+				cin>>a>>b;
+				g.push_back(make_pair(b,make_pair(i,a)));
+			}
+		}
+		for(int i=1;i<=n;i++)
+		{
+			id[i]=i;
+		}
+		sort(g.begin(),g.end());
+		
+		cout<<krus(g)<<endl;
+	}
+}

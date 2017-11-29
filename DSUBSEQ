@@ -1,0 +1,33 @@
+#include<iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		cin>>s;
+		long long int ans=pow(2,s.length());
+		int a[26];
+		int ar[s.length()+1];
+		memset(a,-1,sizeof(a));
+		ar[0]=1;
+		for(int i=1;i<=s.length();i++)
+		{
+			ar[i]=ar[i-1]*2;
+			if(a[s[i-1]-'A']!=-1)
+			{
+			
+				ar[i]-=ar[a[s[i-1]-'A']-1];
+			}
+			a[s[i-1]-'A']=i;
+			if(ar[i]<0)
+				ar[i]+=1000000007;
+			ar[i]=ar[i]%1000000007;
+		}
+	cout<<ar[s.length()]<<endl;
+	}
+}

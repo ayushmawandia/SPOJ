@@ -1,0 +1,46 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		cin.ignore();
+		vector<string> s;
+		for(int i=0;i<n;i++)
+		{
+			string d;
+			getline(cin,d);
+			s.push_back(d);
+		}
+		sort(s.begin(),s.end()); 
+		string a=s[0];
+		int k=0;
+		for(int i=0;i<n;i++)
+		{
+			if(s[i]==a)
+			{
+				k++;	
+			}
+			else
+			{
+				cout<<a<<" "<<k<<endl;
+				a=s[i];
+				k=1;
+			} 
+			
+			
+		}
+	cout<<a<<" "<<k<<endl;
+		cout<<endl;
+			
+	}
+	
+}

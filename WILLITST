@@ -1,0 +1,19 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	  long long int x;
+	
+	cin>>x;
+	if(x<=1)
+	{
+		cout<<"TAK"<<endl;
+		return 0;
+	}
+	if( (x&(x-1)) == 0)
+		cout<<"TAK"<<endl;
+	else
+		cout<<"NIE"<<endl;
+}

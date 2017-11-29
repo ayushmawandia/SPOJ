@@ -1,0 +1,22 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+	double t;
+	cin>>t;
+	while(t!=0)
+	{
+		double s=0.0;
+		double i=2;
+		while(s<t)
+		{
+			s+=1/i;
+			i++;
+		}
+		cout<<i-2<<" card(s)"<<endl;
+		cin>>t;
+	}
+	
+} 

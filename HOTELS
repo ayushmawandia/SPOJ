@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+
+long long int binary(long long int n,long long int a[],long long int k,long long int m)
+{
+	long long int x=m-(a[k]-a[k-1]);
+	if(x<0)
+	 return 0;
+	if(x==0)
+		return m;
+	int i=k;
+	int j=n;
+	while(i<=j)
+	{
+		int mid=(i+j)/2;
+		//	cout<<i<<" "<<j<<" "<<a[mid]<<endl;
+		
+		if(a[mid]-a[k-1]>m)
+			j=mid-1;
+		else 
+		  i=mid+1;
+//		cout<<i<<" "<<j<<" "<<a[mid]<<endl;
+	}
+	return (a[j]-a[k-1]);
+}
+
+
+int main()
+{
+	long long int n,m;
+	
+	cin>>n>>m;
+	long long int a[n+1];
+	a[0]=0;
+	for(int i=1;i<=n;i++)
+	{
+		int x;
+		cin>>x;
+		a[i]=a[i-1]+x;
+	}
+	long long int min=m;
+	for(int k=1;k<=n;k++)
+	{
+	
+		long long int q=m-binary(n,a,k,m);
+		//cout<<k<<" "<<q<<endl;
+		if(q<min)
+			min=q;
+	}
+	cout<<m-min<<endl;
+	
+}

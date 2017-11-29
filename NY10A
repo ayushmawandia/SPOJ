@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	for(int k=1;k<=t;k++)
+	{
+		int l;
+		cin>>l;
+		string s;
+		cin>>s;
+		int a1=0,a2=0,a3=0,a4=0,a5=0,a6=0,a7=0,a8=0;
+		for(int i=0;i<38;i++)
+		{
+			string str=s.substr(i,3);
+			if(str=="TTT")
+				a1++;
+			else if(str=="TTH")
+				a2++;
+				else if(str=="THT")
+				a3++;
+				else if(str=="THH")
+				a4++;
+				else if(str=="HTT")
+				a5++;
+				else if(str=="HTH")
+				a6++;
+				else if(str=="HHT")
+				a7++;
+				else if(str=="HHH")
+				a8++;
+		}
+		cout<<l<<" "<<a1<<" "<<a2<<" "<<a3<<" "<<a4<<" "<<a5<<" "<<a6<<" "<<a7<<" "<<a8<<endl;
+	}
+}

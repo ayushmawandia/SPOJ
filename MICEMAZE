@@ -1,0 +1,73 @@
+#include <iostream>
+#include<climits>
+#include<cstring>
+#include<vector>
+#include<set>
+using namespace std;
+
+void dij(vector<pair<int,int>> g[],int n,int d[])
+{
+	set<pair<int,int>> q;
+	q.insert(make_pair(0,n));
+	d[n]=0;
+	int u,w,v;
+	set<pair<int,int>> ::iterator it;
+	while(q.size() !=0)
+	{
+		it=q.begin();
+		u=it->second;
+	//	cout<<u<<" "<<d[u]<<" "<<g[u].size()<<endl;
+		q.erase(it);
+		for(int i=0;i<g[u].size();i++)
+		{
+			
+			v=g[u][i].first;
+			w=g[u][i].second;
+		//	cout<<v<<" "<<d[v]<<" "<<w<<endl;
+			if(d[v]>d[u]+w)
+			{
+				if(d[v]!=INT_MAX)
+        	  	{
+                	q.erase(q.find(make_pair(d[v],v)));
+        	  	}
+				d[v]=d[u]+w;
+				q.insert(make_pair(d[v],v));
+			//	cout<<v<<" "<<d[v]<<endl;
+			}
+			
+		}
+	}
+	
+	
+}
+
+
+
+
+int main() {
+	
+	int n,e,t,m;
+	cin>>n>>e>>t>>m;
+	vector<pair<int,int>> g[n+1];
+	int d[n+1];
+	for(int i=1;i<=n;i++)
+	{
+		d[i]=INT_MAX;
+	}
+	for(int i=1;i<=m;i++)
+	{
+		int a,b,c;
+		cin>>a>>b>>c;
+		g[b].push_back(make_pair(a,c));
+	}
+	dij(g,e,d);
+	int ans=0;
+	for(int i=1;i<=n;i++)
+	{
+		if(d[i]<=t)
+		ans++;
+		
+	}
+	cout<<ans<<endl;
+	
+}

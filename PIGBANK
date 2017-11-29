@@ -1,0 +1,51 @@
+#include<iostream>
+#include<climits>
+#include<cstring>
+using namespace std;
+
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int a,b;
+	cin>>a>>b;
+	b=b-a;
+	int n;
+	cin>>n;
+	int p[n],w[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>p[i]>>w[i];
+	}
+	int dp[b+1];
+	memset(dp,-1,sizeof(dp));
+	dp[0]=0;
+	for(int i=1;i<=b;i++)
+	{
+		int min=INT_MAX;
+		for(int j=0;j<n;j++)
+		{
+			if(i>=w[j] && dp[i-w[j]]!=-1)
+			{
+				int x=p[j]+dp[i-w[j]];
+				if(x<min)
+				min=x;
+			}
+			
+		}
+		if(min!=INT_MAX)
+			dp[i]=min;
+	}
+
+	if(dp[b]!=-1)
+	{
+		cout<<"The minimum amount of money in the piggy-bank is "<<dp[b]<<"."<<endl;
+	}
+	else
+	cout<<"This is impossible."<<endl;  
+}
+	
+}

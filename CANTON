@@ -1,0 +1,27 @@
+#include<iostream>
+
+#include<cmath>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int l=sqrt(2*n);
+		if(!(l*(l+1)/2>=n))
+			l++;
+		int k=l*(l-1)/2;
+		int x=n-k;
+		if(l%2==0)
+		{
+			cout<<"TERM "<<n<<" IS "<<x<<"/"<<l-x+1<<endl;
+		}
+		else
+		cout<<"TERM "<<n<<" IS "<<l-x+1<<"/"<<x<<endl;
+		
+		
+	}
+}

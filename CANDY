@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cin>>a;
+	while(a!=-1)
+	{
+		int ar[a];
+		int s=0;
+		for(int i=0;i<a;i++)
+		{
+			cin>>ar[i];
+			s+=ar[i];
+		}
+		int avg=s/a;
+		int c=0;
+		int x=0;
+		for(int i=0;i<a;i++)
+		{
+			if(ar[i]<avg)
+				c+=avg-ar[i];
+				
+			if(ar[i]>avg)
+				x+=ar[i]-avg;	
+				
+		}
+		if(x==c)
+		cout<<c<<endl;
+		else
+		cout<<"-1"<<endl;
+		cin>>a;
+	}
+	return 0;
+}

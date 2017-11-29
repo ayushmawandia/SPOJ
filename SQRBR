@@ -1,0 +1,78 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+int b[20][20];
+int print(int open,int close,int n,int a[])
+{
+	if(open>n)
+		return 0;
+//	cout<<open<<" "<<close<<endl;
+	if(b[open][close]!=0)
+		return b[open][close];
+	
+	if(open+close+1==2*n)
+		{
+			b[open][close]= 1;
+	//		cout<<open<<" "<<close<<" "<<b[open][close]<<endl;
+			return 1;
+		}
+		int a1=0;
+		int b1=0;
+	if(a[open+close+1]==1)
+	{
+		if(open>n)
+		{
+			b[open][close]=0;
+	//		cout<<open<<" "<<close<<" "<<b[open][close]<<endl;
+		return b[open][close];
+		}
+		b[open][close]=print(open+1,close,n,a);
+	//	cout<<open<<" "<<close<<" "<<b[open][close]<<endl;
+		return b[open][close];
+	}
+	if(open<n)
+		{
+			
+			a1=print(open+1,close,n,a);
+		}
+	if(open>close)	
+		{
+			
+			b1=print(open,close+1,n,a);;
+		}
+	b[open][close]=a1+b1;
+//	cout<<open<<" "<<close<<" "<<b[open][close]<<endl;
+	return b[open][close];
+}
+
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,k;
+		cin>>n>>k;
+		int a[2*n+1];
+		memset(a,0,sizeof(a));
+		for(int i=0;i<=19;i++)
+		{
+			for(int j=0;j<=19;j++)
+				b[i][j]=0;
+		}
+		for(int i=1;i<=k;i++)
+		{
+			int x;
+			cin>>x;
+			a[x]=1;
+		}
+		if(a[2*n]==1)
+		{
+			cout<<"0"<<endl;
+			continue;
+		}
+		print(0,0,n,a);
+		cout<<b[0][0]<<endl;
+		
+	}
+}

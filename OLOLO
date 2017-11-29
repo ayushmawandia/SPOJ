@@ -1,0 +1,17 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	
+	int s=0;
+	for(int i=1;i<=t;i++)
+	{
+		int x;
+		scanf("%d",&x);
+		s=s^x;
+	}
+	printf("%d",s);
+}

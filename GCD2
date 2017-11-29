@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+int gcd(int a,int b)
+{
+	if(a%b==0)
+	{
+		return b;
+	}
+	else
+	return gcd(b,a%b);
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		int n;
+		cin>>n>>s;
+		int i=0;
+		int l=s.length();
+		int rem=0;
+		if(n==0)
+		{
+			cout<<s<<endl;
+			continue;
+		}
+		if(s=="0")
+		{
+			cout<<n<<endl;
+			continue;
+		}
+		while(i<l)
+		{
+			while(rem<n && i<l)
+			{
+				rem=rem*10+((int)s[i]-'0');
+				i++;
+			}
+			//cout<<rem<<endl;
+			rem=rem%n;
+			//cout<<rem<<endl;
+		}
+		
+		if(rem==0)
+			{
+				cout<<n<<endl;
+				continue;
+			}
+		cout<<gcd(n,rem)<<endl;	
+	}
+}

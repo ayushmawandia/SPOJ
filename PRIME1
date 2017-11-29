@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<math.h>
+int isPrime(long n)
+{
+	
+	if(n==2)
+		return 1;
+	if(n==1||n%2==0)
+		return 0;
+	double x=sqrt(n);
+	long i;
+	for(i=3;i<=x;i+=2)
+	{
+		if(n%i==0)
+			return 0;
+	}
+	return 1;
+}
+
+int main()
+{
+	long m,n;
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		long i;
+		scanf("%ld %ld",&m,&n);
+		if(m<=2)
+			printf("2 \n");
+		if(m%2==0)
+		{
+			m++;
+		}
+		for(i=m;i<=n;i+=2)
+		{
+			
+			if(isPrime(i)==1)
+			{
+				printf("%ld\n",i);
+			}
+		}
+		printf("\n");
+		
+	}
+	return 0;
+}

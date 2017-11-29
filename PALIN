@@ -1,0 +1,62 @@
+#include <iostream>
+#include<vector>
+#include <string>
+#include<algorithm>
+using namespace std;
+
+string a;
+
+void inc()
+{
+	int l=a.length();
+	a[l-1]+=1;
+	int i=l-1;
+	while(a[i]>'9')
+	{
+		a[i]='0';
+		i--;
+		if(i==-1)
+		{
+			a='1'+a;
+			break;
+			
+		}
+		else
+			a[i]+=1;
+	}
+}
+
+
+int main() {
+	
+int t;
+cin>>t;
+	while(t--)
+	{
+		
+		cin>>a;
+		inc();
+		int l=a.length();
+		int m=l/2;
+		if(l%2!=0)
+			m++;
+		string s1=a.substr(0,l/2);
+		string s2=a.substr(m,l/2);
+		a=a.substr(0,m);
+		reverse(s1.begin(),s1.end());
+		if(s2>s1)
+			inc();
+		
+		
+			cout<<a;
+			if(l%2!=0)
+			m--;
+		for(int i=m-1;i>=0;i--)
+		cout<<a[i];
+		cout<<endl;
+				
+			
+				
+	}
+	
+}

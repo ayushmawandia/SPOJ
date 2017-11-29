@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t)
+	{
+		int a[t+1],b[t+1];
+		for(int i=1;i<=t;i++)
+		{
+			cin>>a[i];
+			b[a[i]]=i;
+		}
+		bool check=true;
+		for(int i=1;i<=t;i++)
+		{
+			if(a[i]!=b[i])
+			{
+				check=false;
+				break;
+			}
+		}
+		if(check)
+		{
+			cout<<"ambiguous"<<endl;
+		}
+		else
+			cout<<"not ambiguous"<<endl;
+			cin>>t;
+	}
+}

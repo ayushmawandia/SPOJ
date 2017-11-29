@@ -1,0 +1,105 @@
+#include<iostream>
+#include<vector>
+#include<cstring>
+using namespace std;
+vector<int> trv,lev;
+void travel(int node,vector<int> g[],int l,int fv[])
+{
+	if(fv[node]==-1)
+		fv[node]=trv.size();
+	trv.push_back(node);
+	lev.push_back(l);
+	for(int i=0;i<g[node].size();i++)
+	{
+		travel(g[node][i],g,l+1,fv);
+		trv.push_back(node);
+		lev.push_back(l);
+	}
+}
+
+void add(pair<int,int> seg[],int pos,int low,int high)
+{
+	
+	if(low==high)
+	{
+		seg[pos].second=lev[low];
+		seg[pos].first=trv[low];
+		return;
+	}
+	int mid=(high+low)/2;
+	add(seg,2*pos+1,low,mid);
+	add(seg,2*pos+2,mid+1,high);
+	if(seg[2*pos+1].second<=seg[2*pos+2].second)
+	{
+		seg[pos].second=seg[2*pos+1].second;
+		seg[pos].first=seg[2*pos+1].first;
+	}
+	else
+	{
+		seg[pos].second=seg[2*pos+2].second;
+		seg[pos].first=seg[2*pos+2].first;
+	}
+}
+pair<int,int> query(int low,int high,int pos,int l,int h,pair<int,int> seg[])
+{
+	
+	if(high<l || low>h)
+	{
+		return make_pair(-1,1001);
+	}
+	if(low>=l && h>=high)
+		return seg[pos];
+	int mid=(high+low)/2;
+	pair<int,int> a=query(low,mid,2*pos+1,l,h,seg);
+	pair<int,int> b=query(mid+1,high,2*pos+2,l,h,seg);
+//	cout<<low<<" "<<high<<" "<<a.first<<" "<<b.first<<endl;
+	if(a.second<=b.second)
+	{
+		return a;
+	}
+	else
+	{
+		return b;
+	}
+}
+
+int main()
+{
+	int t;
+	cin>>t;
+	for(int z=1;z<=t;z++)
+	{
+		int n;
+		cin>>n;
+		vector<int> g[n+1];
+		trv.clear();
+		lev.clear();
+		int fv[n+1];
+		memset(fv,-1,sizeof(fv));
+		for(int i=1;i<=n;i++)
+		{
+			int k;
+			cin>>k;
+			while(k--)
+			{
+				int x;
+				cin>>x;
+				g[i].push_back(x);
+			}
+		}
+		travel(1,g,0,fv);
+		pair<int,int> seg[4*trv.size()];
+		add(seg,0,0,trv.size()-1);
+		
+		int q;
+		cin>>q;
+		cout<<"Case "<<z<<":"<<endl;
+		while(q--)
+		{
+			int x,y;
+			cin>>x>>y;
+			
+			cout<<query(0,trv.size()-1,0,min(fv[x],fv[y]),max(fv[x],fv[y]),seg).first<<endl;
+		}
+	}
+}

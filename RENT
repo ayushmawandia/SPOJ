@@ -1,0 +1,49 @@
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+
+using namespace std;
+
+bool fn(pair<int,pair<int,int>> a,pair<int,pair<int,int>> b)
+{
+	if(a.first==b.first)
+		return a.second.first<b.second.first;
+	return a.first<b.first;
+}
+
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		pair<int,pair<int,int>> a[n];
+		 int m=0;
+		for(int i=0;i<n;i++)
+		{
+			cin>>a[i].first>>a[i].second.first>>a[i].second.second;
+			m=max(m,a[i].second.first);
+		}
+		
+		sort(a,a+n,fn);
+		long long int x[a[n-1].first+m+1];
+		memset(x,0,sizeof(x));
+		long long int ma=0;
+		for(int i=n-1;i>=0;i--)
+		{
+			x[a[i].first]=max(max(x[a[i].first+1],x[a[i].first]),a[i].second.second+x[a[i].first+a[i].second.first]);
+			int j=a[i].first-1;
+			if(i!=0)
+			while(j>a[i-1].first)
+			{
+				x[j]=x[a[i].first];
+				j--;
+			}
+			ma=max(ma,x[a[i].first]);
+		}
+		cout<<ma<<endl;
+	}
+}

@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	
+	int  a,b,c,d,a1,b1,c1,d1;
+	cin>>a>>b>>c>>d>>a1>>b1>>c1>>d1;
+	while(a!=-1)
+	{
+		int k=a/a1;
+		if(a%a1!=0)
+			k++;
+		int n=b/b1;
+		if(b%b1!=0)
+			n++;
+		int m=c/c1;
+		if(c%c1!=0)
+			m++;
+			
+		int l=d/d1;
+		if(d%d1!=0)
+			l++;
+		int	x=max(max(m,n),max(k,l));
+		b=b1*x-b;
+		a=a1*x-a;
+		c=c1*x-c;
+		d=d1*x-d;
+		if(a<0)
+			a=0;
+		if(b<0)
+			b=0;
+		if(c<0)
+			c=0;
+		if(d<0)
+			d=0;
+			
+		cout<<a<<" "<<b<<" "<<c<<" "<<d<<endl;
+		cin>>a>>b>>c>>d>>a1>>b1>>c1>>d1;
+	}
+}

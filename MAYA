@@ -1,0 +1,59 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int getNo(string s)
+{
+	if(s=="S")
+		return 0;
+	int l=s.length();
+	int dot=0;
+	int dash=0;
+	for(int i=0;i<l;i++)
+	{
+		if(s[i]=='.')
+			dot++;
+		if(s[i]=='-')
+			dash++;
+	}
+	return dash*5+dot;
+}
+
+
+int main()
+{
+	int t;
+	cin>>t;
+	cin.ignore();
+	while(t)
+	{
+		int n[t];
+		for(int i=0;i<t;i++)
+		{
+			string s;
+			getline(cin,s);
+			
+			n[i]=getNo(s);
+			//cout<<n[i]<<endl;
+		}
+		long long int ans=0;
+		for(int i=0;i<t;i++)
+		{
+			if(i==t-1)
+			{
+				ans+=n[i];
+				continue;
+			}
+			if(i==t-2)
+			{
+				ans+=20*n[i];
+				continue;
+			}
+			ans+=pow(20,t-(i+2))*18*n[i];
+		//	cout<<ans<<endl;
+		}
+		cout<<ans<<endl;
+		cin>>t;
+		cin.ignore();
+	}
+}

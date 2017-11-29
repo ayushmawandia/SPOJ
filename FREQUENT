@@ -1,0 +1,112 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+struct node
+{
+	long long int l;
+	long long int r;
+	long long int m;
+	node *left;
+	node *right;
+};
+
+node* query(node *x,int low,int high,int l,int h,int ar[])
+{
+
+	if(low>h || high<l)
+		return NULL;
+	if(low>=l && high<=h )
+	{
+		return x;
+	}
+	int mid=low+(high-low)/2;
+	node *b=query(x->left,low,mid,l,h,ar);
+	node *c=query(x->right,mid+1,high,l,h,ar);
+	if(b==0)
+	{
+		return c;
+	}
+	if(c==0)
+		return b;
+	node *a=new node;
+	if(ar[mid]==ar[mid+1])
+	{
+		a->m=max(b->m,max(c->m,b->r+c->l));
+		if(ar[low]==ar[mid])
+			a->l=a->m;
+		else
+			a->l=b->l;
+		if(ar[high]==ar[mid+1])
+			a->r=a->m;
+		else
+			a->r=c->r;
+		return a;
+			
+	}
+	a->m=max(b->m,c->m);
+	a->r=c->r;
+	a->l=b->l;
+	return a;
+}
+
+void add(node* a,int x[],int low,int high)
+{
+	if(low==high)
+	{
+		a->r=1;
+		a->l=1;
+		a->m=1;
+		return;
+	}
+	node *b=new node;
+	node *c=new node;
+	a->left=b;
+	a->right=c;
+	int mid=low+(high-low)/2;
+	add(b,x,low,mid);
+	add(c,x,mid+1,high);
+	if(x[mid]==x[mid+1])
+	{
+		a->m=max(b->m,max(c->m,b->r+c->l));
+		if(x[low]==x[mid])
+			a->l=a->m;
+		else
+			a->l=b->l;
+		if(x[high]==x[mid+1])
+			a->r=a->m;
+		else
+			a->r=c->r;
+		return;
+			
+	}
+	a->m=max(b->m,c->m);
+	a->r=c->r;
+	a->l=b->l;
+
+}
+
+int main()
+{
+	
+	int n,q;
+	cin>>n;
+	while(n)
+	{
+	cin>>q;
+	int a[n];
+	for(int i=0;i<n;i++)
+		cin>>a[i];
+	node *x=new node;
+	add(x,a,0,n-1);
+	
+	for(int i=1;i<=q;i++)
+	{
+		int l,h;
+		cin>>l>>h;
+	
+		node *p=query(x,0,n-1,l-1,h-1,a);
+		cout<<p->m<<endl;
+	}
+	cin>>n;
+	}
+}

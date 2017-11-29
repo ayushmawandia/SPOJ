@@ -1,0 +1,50 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+
+    int main() {
+
+     int t;
+     cin>>t;
+     while(t--)
+     {
+        int n;
+        cin>>n;
+        int ar[n][n];
+        for(int i=0;i<n;i++)
+        {
+           for(int j=0;j<n;j++)
+            cin>>ar[i][j];
+        }
+
+        for(int i=0;i<n;i++)
+        {
+           for(int j=i+1;j<n;j++)
+           {
+              bool c=true;
+
+              for(int k=0;k<n;k++)
+              {
+
+                 if(i==k || j==k)
+                 {
+                    continue;
+                 }
+                  if(ar[i][k]+ar[k][j]==ar[i][j])
+                  {
+
+                     c=false;
+                     break;
+                  }
+
+              }
+              if(c==true)
+               cout<<i+1<<" "<<j+1<<endl;
+           }
+
+        }
+
+     }
+
+    }
